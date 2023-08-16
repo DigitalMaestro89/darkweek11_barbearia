@@ -36,7 +36,7 @@ class LoginPage extends StatelessWidget {
                         ),
                         TextFormField(
                           decoration: const InputDecoration(
-                              label: Text('Email'),
+                              label: Text('E-mail'),
                               hintText: 'E-mail',
                               floatingLabelBehavior:
                                   FloatingLabelBehavior.never,

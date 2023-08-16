@@ -19,5 +19,15 @@ sealed class BarbershopTheme {
         borderSide: const BorderSide(color: ColorConstants.colorRed),
       ),
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white,
+        backgroundColor: ColorConstants.colorBrown,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        )
+      )
+    ),
+    fontFamily: FontConstants.fontFamily
   );
 }

@@ -2,8 +2,8 @@
     "users": [
         {
             "id": 5,
-            "name": "Rodrigo Rahman 1",
-            "email": "rodrigorahman1@gmail.com",
+            "name": "Carlos Alberto",
+            "email": "caneto@gmail.com",
             "password": "123123",
             "profile": "ADM",
             "work_days": [

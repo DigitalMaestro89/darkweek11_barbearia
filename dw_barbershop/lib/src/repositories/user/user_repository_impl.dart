@@ -33,10 +33,10 @@ class UserRepositoryImpl implements UserRepository {
 
       return Success(data['access_token']);
     } on DioException catch (e, s) {
-      if(e.response != null) {
+      if (e.response != null) {
         final Response(:statusCode) = e.response!;
-        if(statusCode == HttpStatus.forbidden) {
-          log('Login ou senha inválidos', error: e, stackTrace: s);    
+        if (statusCode == HttpStatus.forbidden) {
+          log('Login ou senha inválidos', error: e, stackTrace: s);
           return Failure(AuthUnauthorizedException());
         }
       }
@@ -47,8 +47,16 @@ class UserRepositoryImpl implements UserRepository {
 
   @override
   Future<Either<RepositoryExecption, UserModel>> me() async {
-    final Response(:data) = await _restClient.auth.get('/me');
+    try {
+      final Response(:data) = await _restClient.auth.get('/me');
 
-    
+      return Success(UserModel.fromMap(data));
+    } on DioException catch (e, s) {
+      log('Erro ao buscar usuário logado', error: e, stackTrace: s);
+      return Failure(RepositoryExecption(message: 'Erro ao buscar usuário logado'));
+    } on ArgumentError catch (e, s) {
+      log('Invalid Json', error: e, stackTrace: s);
+      return Failure(RepositoryExecption(message: e.message));
+    }
   }
 }

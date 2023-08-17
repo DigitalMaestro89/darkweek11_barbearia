@@ -27,6 +27,10 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
   }
 
+  void _redirect(String routeName) {
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -19,6 +19,7 @@ dependencies:
   asyncstate: ^2.0.2
   loading_animation_widget: ^1.2.0+4
   shared_preferences: ^2.2.0
+  validatorless: ^1.2.3
   dio: ^5.3.2
 
 dev_dependencies:

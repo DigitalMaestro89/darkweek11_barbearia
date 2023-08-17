@@ -5,9 +5,11 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:dw_barbershop/src/core/excptions/auth_execption.dart';
+import 'package:dw_barbershop/src/core/excptions/repository_execption.dart';
 
 import 'package:dw_barbershop/src/core/fp/either.dart';
 import 'package:dw_barbershop/src/core/restClient/rest_client.dart';
+import 'package:dw_barbershop/src/model/user_model.dart';
 
 import './user_repository.dart';
 
@@ -41,5 +43,12 @@ class UserRepositoryImpl implements UserRepository {
       log('Erro ao realizar login', error: e, stackTrace: s);
       return Failure(AuthError(message: 'Erro ao realizar login'));
     }
+  }
+
+  @override
+  Future<Either<RepositoryExecption, UserModel>> me() async {
+    final Response(:data) = await _restClient.auth.get('/me');
+
+    
   }
 }

@@ -8,6 +8,7 @@ import 'package:dw_barbershop/src/core/excptions/auth_execption.dart';
 import 'package:dw_barbershop/src/core/excptions/repository_execption.dart';
 
 import 'package:dw_barbershop/src/core/fp/either.dart';
+import 'package:dw_barbershop/src/core/fp/nil.dart';
 import 'package:dw_barbershop/src/core/restClient/rest_client.dart';
 import 'package:dw_barbershop/src/model/user_model.dart';
 
@@ -58,5 +59,11 @@ class UserRepositoryImpl implements UserRepository {
       log('Invalid Json', error: e, stackTrace: s);
       return Failure(RepositoryExecption(message: e.message));
     }
+  }
+
+  @override
+  Future<Either<RepositoryExecption, Nil>> registerAdmin(({String email, String name, String password}) userData) {
+    // TODO: implement registerAdmin
+    throw UnimplementedError();
   }
 }

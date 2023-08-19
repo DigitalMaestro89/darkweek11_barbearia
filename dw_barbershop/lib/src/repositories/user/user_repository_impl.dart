@@ -54,7 +54,8 @@ class UserRepositoryImpl implements UserRepository {
       return Success(UserModel.fromMap(data));
     } on DioException catch (e, s) {
       log('Erro ao buscar usuário logado', error: e, stackTrace: s);
-      return Failure(RepositoryExecption(message: 'Erro ao buscar usuário logado'));
+      return Failure(
+          RepositoryExecption(message: 'Erro ao buscar usuário logado'));
     } on ArgumentError catch (e, s) {
       log('Invalid Json', error: e, stackTrace: s);
       return Failure(RepositoryExecption(message: e.message));
@@ -62,8 +63,20 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<RepositoryExecption, Nil>> registerAdmin(({String email, String name, String password}) userData) {
-    // TODO: implement registerAdmin
-    throw UnimplementedError();
+  Future<Either<RepositoryExecption, Nil>> registerAdmin(
+      ({String email, String name, String password}) userData) async {
+    try {
+      await _restClient.unAuth.post('/users', data: {
+        'name': userData.name,
+        'email': userData.email,
+        'password': userData.password,
+        'profile': 'ADM'
+      });
+      return Success(nil);
+    } on DioException catch (e, s) {
+      log('Erro ao registrar usuário admin', error: e, stackTrace: s);
+      return Failure(
+          RepositoryExecption(message: 'Erro ao registrar usuário admin'));
+    }
   }
 }

@@ -3,13 +3,13 @@ import 'package:dw_barbershop/src/core/fp/either.dart';
 import 'package:dw_barbershop/src/core/fp/nil.dart';
 import 'package:dw_barbershop/src/repositories/user/user_repository.dart';
 import 'package:dw_barbershop/src/services/user_login/user_login_service.dart';
-import './user_register_service.dart';
+import 'user_register_adm_service.dart';
 
-class UserRegisterServiceImpl implements UserRegisterService {
+class UserRegisterAdmServiceImpl implements UserRegisterAdmService {
   final UserRepository userRepository;
   final UserLoginService userLoginService;
 
-  UserRegisterServiceImpl({
+  UserRegisterAdmServiceImpl({
     required this.userRepository,
     required this.userLoginService,
   });

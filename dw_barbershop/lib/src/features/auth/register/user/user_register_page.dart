@@ -1,10 +1,9 @@
 // ignore_for_file: unused_local_variable
 
-import 'dart:html';
-
+import 'package:dw_barbershop/src/core/ui/helpers/context_extension.dart';
 import 'package:dw_barbershop/src/core/ui/helpers/form_helper.dart';
 import 'package:dw_barbershop/src/core/ui/helpers/messages.dart';
-import 'package:dw_barbershop/src/features/auth/register/user_register_vm.dart';
+import 'package:dw_barbershop/src/features/auth/register/user/user_register_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:validatorless/validatorless.dart';
@@ -17,7 +16,6 @@ class UserRegisterPage extends ConsumerStatefulWidget {
 }
 
 class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
-
   final formKey = GlobalKey<FormState>();
   final nameEC = TextEditingController();
   final emailEC = TextEditingController();
@@ -35,11 +33,15 @@ class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
   Widget build(BuildContext context) {
     final userRegisterVM = ref.watch(userRegisterVmProvider.notifier);
 
-    ref.listen(userRegisterVmProvider, (_, state) { 
-      switch(state) {
+    ref.listen(userRegisterVmProvider, (_, state) {
+      switch (state) {
         case UserRegisterStateStatus.initial:
+          break;
         case UserRegisterStateStatus.success:
+          context.pushNamed('/auth/register/barebershop');
         case UserRegisterStateStatus.error:
+          Messages.showError(
+              'Error ao registrar usuário adminstrador', context);
       }
     });
 
@@ -92,7 +94,8 @@ class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
                 onTapOutside: (_) => context.unfocus(),
                 validator: Validatorless.multiple([
                   Validatorless.required('Confirma Senha Obrigatório'),
-                  Validatorless.compare(passwordEC, 'Senha diferente de confirma senha'),
+                  Validatorless.compare(
+                      passwordEC, 'Senha diferente de confirma senha'),
                 ]),
                 obscureText: true,
                 decoration: const InputDecoration(
@@ -102,14 +105,16 @@ class _UserRegisterPageState extends ConsumerState<UserRegisterPage> {
               const SizedBox(height: 24),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(56)
-                ),
+                    minimumSize: const Size.fromHeight(56)),
                 onPressed: () {
-                  switch(formKey.currentState?.validate()) {
+                  switch (formKey.currentState?.validate()) {
                     case null || false:
                       Messages.showError('Formulário invalido', context);
                     case true:
-                      userRegisterVM.register(name: nameEC.text, email: emailEC.text, password: passwordEC.text);
+                      userRegisterVM.register(
+                          name: nameEC.text,
+                          email: emailEC.text,
+                          password: passwordEC.text);
                   }
                 },
                 child: const Text('CRIAR CONTA'),

@@ -1,6 +1,8 @@
+import 'package:dw_barbershop/src/core/ui/helpers/context_extension.dart';
 import 'package:dw_barbershop/src/core/ui/helpers/form_helper.dart';
 import 'package:dw_barbershop/src/core/ui/widgets/hours_panel.dart';
 import 'package:dw_barbershop/src/core/ui/widgets/weekdays_panel.dart';
+import 'package:dw_barbershop/src/features/auth/register/barbershop/barbershop_register_state.dart';
 import 'package:dw_barbershop/src/features/auth/register/barbershop/barbershop_register_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -34,13 +36,25 @@ class _BarbershopRegisterPageState
     final barbershopRegisterVM =
         ref.watch(barbershopRegisterVmProvider.notifier);
 
+
+    ref.listen(barbershopRegisterVmProvider, (_, state) {
+      switch(state.status) {
+        case BarbershopRegisterStateStatus.initial:
+          break;
+        case BarbershopRegisterStateStatus.error:
+          Messages.showError('Desculpe ocorreu um erro ao registrar barbearia', context);
+        case BarbershopRegisterStateStatus.success:
+          Navigator.of(context).pushNamedAndRemoveUntil('/home/adm', (route) => false);
+      }
+    });   
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cradastrar estabelecimento'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
-        child: SimpleDialogOption(
+        child: SingleChildScrollView(
           child: Form(
             key: formKey,
             child: Column(children: [

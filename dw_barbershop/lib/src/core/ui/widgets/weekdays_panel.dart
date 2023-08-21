@@ -19,10 +19,20 @@ class WeekdaysPanel extends StatelessWidget {
         SizedBox(
           height: 16,
         ),
-        Row(
-          children: [
-            ButtonDay()
-          ],
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ButtonDay(label: 'Seg'),
+              ButtonDay(label: 'Ter'),
+              ButtonDay(label: 'Qua'),
+              ButtonDay(label: 'Qui'),
+              ButtonDay(label: 'Sex'),
+              ButtonDay(label: 'Sab'),
+              ButtonDay(label: 'Dom'),
+            ],
+          ),
         )
       ],
     );
@@ -30,13 +40,17 @@ class WeekdaysPanel extends StatelessWidget {
 }
 
 class ButtonDay extends StatelessWidget {
+
+  final String label;
+  
   const ButtonDay({
-    super.key,
+    super.key, required this.label,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.all(3),
       width: 40,
       height: 56,
       decoration: BoxDecoration(
@@ -46,10 +60,10 @@ class ButtonDay extends StatelessWidget {
           color: ColorConstants.colorGrey,
         ),
       ),
-      child: const Center(
+      child: Center(
           child: Text(
-        'Seg',
-        style: TextStyle(
+        label,
+        style: const TextStyle(
           fontSize: 12,
           color: ColorConstants.colorGrey,
           fontWeight: FontWeight.w500

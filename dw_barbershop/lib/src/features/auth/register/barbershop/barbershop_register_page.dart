@@ -28,7 +28,7 @@ class _BarbershopRegisterPageState extends State<BarbershopRegisterPage> {
         child: SimpleDialogOption(
           child: Column(children: [
             const SizedBox(
-              height: 19,
+              height: 5,
             ),
             TextFormField(
               onTapOutside: (_) => context.unfocus(),

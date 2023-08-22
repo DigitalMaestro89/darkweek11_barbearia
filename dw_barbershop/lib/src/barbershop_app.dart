@@ -5,6 +5,7 @@ import 'package:dw_barbershop/src/core/ui/widgets/barbershop_loader.dart';
 import 'package:dw_barbershop/src/features/auth/login/login_page.dart';
 import 'package:dw_barbershop/src/features/auth/register/barbershop/barbershop_register_page.dart';
 import 'package:dw_barbershop/src/features/auth/register/user/user_register_page.dart';
+import 'package:dw_barbershop/src/features/home/adm/home_adm_page.dart';
 import 'package:dw_barbershop/src/features/schedule/schedule_page.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class BarbershopApp extends StatelessWidget {
             '/auth/login': (_) => const LoginPage(),
             '/auth/register/user': (_) => const UserRegisterPage(),
             '/auth/register/barebershop': (_) => const BarbershopRegisterPage(),
-            '/home/adm': (_) => const Text('ADM'),
+            '/home/adm': (_) => const HomeAdmPage(),
             '/home/employee': (_) => const Text('Employee'),
             '/schedule': (_) => const SchedulePage(),
           },

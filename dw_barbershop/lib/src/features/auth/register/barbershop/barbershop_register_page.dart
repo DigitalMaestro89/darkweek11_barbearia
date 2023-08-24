@@ -1,4 +1,3 @@
-import 'package:dw_barbershop/src/core/ui/helpers/context_extension.dart';
 import 'package:dw_barbershop/src/core/ui/helpers/form_helper.dart';
 import 'package:dw_barbershop/src/core/ui/widgets/hours_panel.dart';
 import 'package:dw_barbershop/src/core/ui/widgets/weekdays_panel.dart';
@@ -35,7 +34,6 @@ class _BarbershopRegisterPageState
   Widget build(BuildContext context) {
     final barbershopRegisterVM =
         ref.watch(barbershopRegisterVmProvider.notifier);
-
 
     ref.listen(barbershopRegisterVmProvider, (_, state) {
       switch(state.status) {

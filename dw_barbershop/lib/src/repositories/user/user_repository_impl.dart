@@ -84,7 +84,7 @@ class UserRepositoryImpl implements UserRepository {
   Future<Either<RepositoryExecption, List<UserModel>>> getEmployees(
       int barbershopId) async {
     try {
-      final Response(:data) = await _restClient.auth
+      final Response(:List data) = await _restClient.auth
           .get('/users', queryParameters: {'barbershop_id': barbershopId});
 
       final employees = data.map((e) => UserModelADM.fromMap(e)).toList();

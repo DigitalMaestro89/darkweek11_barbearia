@@ -15,7 +15,7 @@ sealed class UserModel {
     return switch(json['profile']) {
       'ADM' => UserModelADM.fromMap(json),
       'EMPLOYEE' => UserModelEmployee.fromMap(json),
-      _ => throw ArgumentError('User profile not found')
+      _ => throw FormatException('Invalid UserModel JSON: $json')
     };
   }
 
@@ -46,10 +46,10 @@ class UserModelADM extends UserModel {
           name: name,
           email: email,
           avatar: json['avatar'],
-          workDays: json['workDays']?.cast<String>(),
-          workHours: json['workHours']?.cast<int>(),
+          workDays: (json['workDays'] as List<Object?>?)?.cast<String>(),
+          workHours: (json['workHours'] as List<Object?>?)?.cast<int>(),
         ),
-      _ => throw ArgumentError('Invalid Json'),
+      _ => throw FormatException('Invalid UserModelAdm JSON: $json'),
     };
   }
 }
@@ -76,36 +76,19 @@ class UserModelEmployee extends UserModel {
         'name': final String name,
         'email': final String email,
         'barbershop_id': final int barbershopId,
-        'work_days': final workDays,
-        'work_hours': final workHours,
+        'work_days': final List<Object?> workDays,
+        'work_hours': final List<Object?> workHours,
       } =>
         UserModelEmployee(
           id: id,
           name: name,
           email: email,
           barbershopId: barbershopId,
-          avatar: json['avatar'],
-          workDays: workDays?.cast<String>(),
-          workHours: workHours?.cast<int>(), 
+          avatar: json['avatar'] as String?,
+          workDays: workDays.cast<String>(),
+          workHours: workHours.cast<int>(), 
         ),
-      _ => throw ArgumentError('Invalid Json'),
+      _ => throw FormatException('Invalid UserModelEmployee JSON: $json'),
     };
   }
 }
-
-
-// {
-//     "id": 5,
-//     "name": "Rodrigo Rahman 1",
-//     "email": "rodrigorahman1@gmail.com",
-//     "profile": "ADM",
-//     "work_days": [
-//         "Seg",
-//         "Qua"
-//     ],
-//     "work_hours": [
-//         6,
-//         7,
-//         8
-//     ]
-// }

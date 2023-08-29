@@ -84,7 +84,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                               Validatorless.required('E-mail obrigatorio'),
                               Validatorless.email('E-mail invalido')
                             ]),
-                            controller: emailEC,
+                            controller: emailEC..text = 'caneto@gmail.com',
                             decoration: const InputDecoration(
                               label: Text('E-mail'),
                               hintText: 'E-mail',
@@ -105,7 +105,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                   'Senha deve conter pelo menos 6 caracteres'),
                             ]),
                             obscureText: true,
-                            controller: passwordEC,
+                            controller: passwordEC..text = '123123',
                             decoration: const InputDecoration(
                               label: Text('Senha'),
                               hintText: 'Senha',

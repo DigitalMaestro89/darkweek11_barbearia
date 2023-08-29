@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:dw_barbershop/src/core/ui/barbershop_icons.dart';
 import 'package:dw_barbershop/src/core/ui/constants.dart';
+import 'package:dw_barbershop/src/core/ui/helpers/context_extension.dart';
 import 'package:dw_barbershop/src/core/ui/widgets/barbershop_loader.dart';
 import 'package:dw_barbershop/src/features/home/adm/home_adm_state.dart';
 import 'package:dw_barbershop/src/features/home/adm/home_adm_vm.dart';
@@ -22,7 +23,9 @@ class HomeAdmPage extends ConsumerWidget {
         floatingActionButton: FloatingActionButton(
           shape: const CircleBorder(),
           backgroundColor: ColorConstants.colorBrown,
-          onPressed: () {},
+          onPressed: () {
+            context.pushNamed('/employee/register');
+          },
           child: const CircleAvatar(
             backgroundColor: Colors.white,
             maxRadius: 12,

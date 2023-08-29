@@ -45,9 +45,9 @@ class UserModelADM extends UserModel {
           id: id,
           name: name,
           email: email,
-          avatar: json['avatar'],
-          workDays: (json['workDays'] as List<Object?>?)?.cast<String>(),
-          workHours: (json['workHours'] as List<Object?>?)?.cast<int>(),
+          avatar: json['avatar'] as String?,
+          workDays: (json['workDays'] as List<String?>?)?.cast<String>(),
+          workHours: (json['workHours'] as List<int?>?)?.cast<int>(),
         ),
       _ => throw FormatException('Invalid UserModelAdm JSON: $json'),
     };

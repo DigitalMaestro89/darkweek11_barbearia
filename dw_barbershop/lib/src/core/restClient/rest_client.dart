@@ -20,13 +20,6 @@ final class RestClient extends DioForNative {
     ]);
   }
 
-  RestClient get auth {
-    options.extra['DIO_AUTH_KEY'] = true;
-    return this;
-  }
-
-  RestClient get unAuth {
-    options.extra['DIO_AUTH_KEY'] = false;
-    return this;
-  }
+  RestClient get auth => this..options.extra['DIO_AUTH_KEY'] = true;
+  RestClient get unAuth => this..options.extra['DIO_AUTH_KEY'] = false;
 }

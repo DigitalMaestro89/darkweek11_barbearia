@@ -66,12 +66,15 @@ class UserRepositoryImpl implements UserRepository {
   Future<Either<RepositoryExecption, Nil>> registerAdmin(
       ({String email, String name, String password}) userData) async {
     try {
-      await _restClient.unAuth.post('/users', data: {
-        'name': userData.name,
-        'email': userData.email,
-        'password': userData.password,
-        'profile': 'ADM'
-      });
+      await _restClient.unAuth.post(
+        '/users',
+        data: {
+          'name': userData.name,
+          'email': userData.email,
+          'password': userData.password,
+          'profile': 'ADM'
+        },
+      );
       return Success(nil);
     } on DioException catch (e, s) {
       log('Erro ao registrar usuário admin', error: e, stackTrace: s);
@@ -91,10 +94,13 @@ class UserRepositoryImpl implements UserRepository {
       return Success(employees);
     } on DioException catch (e, s) {
       log('Erro ao buscar colaboradores', error: e, stackTrace: s);
-      return Failure(RepositoryExecption(message: 'Erro ao buscar colaboradores'));
+      return Failure(
+          RepositoryExecption(message: 'Erro ao buscar colaboradores'));
     } on ArgumentError catch (e, s) {
-      log('Erro ao converter colaboradores (Invalid Json)', error: e, stackTrace: s);
-      return Failure(RepositoryExecption(message: 'Erro ao converter colaboradores (Invalid Json)'));
+      log('Erro ao converter colaboradores (Invalid Json)',
+          error: e, stackTrace: s);
+      return Failure(RepositoryExecption(
+          message: 'Erro ao converter colaboradores (Invalid Json)'));
     }
   }
 }

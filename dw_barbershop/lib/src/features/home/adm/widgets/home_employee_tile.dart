@@ -1,5 +1,6 @@
 import 'package:dw_barbershop/src/core/ui/barbershop_icons.dart';
 import 'package:dw_barbershop/src/core/ui/constants.dart';
+import 'package:dw_barbershop/src/core/ui/helpers/context_extension.dart';
 import 'package:dw_barbershop/src/model/user_model.dart';
 import 'package:flutter/material.dart';
 
@@ -57,7 +58,9 @@ class HomeEmployeeTile extends StatelessWidget {
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(horizontal: 12)),
-                      onPressed: () {},
+                      onPressed: () {
+                        context.pushNamed('/schedule');
+                      },
                       child: const Text('AGENDAR'),
                     ),
                     OutlinedButton(

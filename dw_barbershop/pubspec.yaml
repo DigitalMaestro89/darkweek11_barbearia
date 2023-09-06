@@ -21,6 +21,7 @@ dependencies:
   shared_preferences: ^2.2.0
   validatorless: ^1.2.3
   top_snackbar_flutter: ^3.1.0
+  table_calendar: ^3.0.9
   dio: ^5.3.2
 
 dev_dependencies:

@@ -1,6 +1,7 @@
 import 'package:dw_barbershop/src/core/ui/barbershop_icons.dart';
 import 'package:dw_barbershop/src/core/ui/constants.dart';
 import 'package:dw_barbershop/src/core/ui/widgets/avatar_widget.dart';
+import 'package:dw_barbershop/src/features/schedule/widgets/schedule_calendar.dart';
 import 'package:flutter/material.dart';
 
 class SchedulePage extends StatelessWidget {
@@ -38,20 +39,25 @@ class SchedulePage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 32,
+                  height: 28,
                 ),
                 TextFormField(
                   readOnly: true,
                   decoration: const InputDecoration(
-                      label: Text('Selecione uma data'),
-                      hintText: 'Selecione uma data',
-                      floatingLabelBehavior: FloatingLabelBehavior.never,
-                      suffixIcon: Icon(
-                        BarbershopIcons.calendar,
-                        color: ColorConstants.colorBrown,
-                        size: 18,
-                      )),
-                )
+                    label: Text('Selecione uma data'),
+                    hintText: 'Selecione uma data',
+                    floatingLabelBehavior: FloatingLabelBehavior.never,
+                    suffixIcon: Icon(
+                      BarbershopIcons.calendar,
+                      color: ColorConstants.colorBrown,
+                      size: 18,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                   height: 28,
+                ),
+                const ScheduleCalendar()
               ],
             ),
           ),

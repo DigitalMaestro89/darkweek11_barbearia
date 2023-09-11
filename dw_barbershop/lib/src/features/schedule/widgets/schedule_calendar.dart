@@ -1,9 +1,18 @@
-import 'package:dw_barbershop/src/core/ui/constants.dart';
+import 'package:dw_barbershop/src/core/ui/helpers/messages.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
+import 'package:dw_barbershop/src/core/ui/constants.dart';
+
 class ScheduleCalendar extends StatefulWidget {
-  const ScheduleCalendar({super.key});
+  final VoidCallback cancelPressed;
+  final ValueChanged<DateTime> onPressed;
+
+  const ScheduleCalendar({
+    Key? key,
+    required this.cancelPressed,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   State<ScheduleCalendar> createState() => _ScheduleCalendarState();
@@ -51,7 +60,7 @@ class _ScheduleCalendarState extends State<ScheduleCalendar> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TextButton(
-                onPressed: () {},
+                onPressed: widget.cancelPressed,
                 child: const Text(
                   'Cancelar',
                   style: TextStyle(
@@ -62,7 +71,13 @@ class _ScheduleCalendarState extends State<ScheduleCalendar> {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: (){
+                  if(selectedDay == null) {
+                    Messages.showError('Por favor selecione um dia', context);
+                    return;
+                  }
+                  widget.onPressed(selectedDay!);
+                },
                 child: const Text(
                   'OK',
                   style: TextStyle(

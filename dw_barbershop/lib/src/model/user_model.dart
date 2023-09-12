@@ -12,19 +12,15 @@ sealed class UserModel {
   });
 
   factory UserModel.fromMap(Map<String, dynamic> json) {
-    return switch(json['profile']) {
+    return switch (json['profile']) {
       'ADM' => UserModelADM.fromMap(json),
       'EMPLOYEE' => UserModelEmployee.fromMap(json),
       _ => throw FormatException('Invalid UserModel JSON: $json')
     };
   }
-
 }
 
-class UserModelADM extends UserModel {
-  final List<String>? workDays;
-  final List<int>? workHours;
-
+final class UserModelADM extends UserModel {
   UserModelADM({
     required super.id,
     required super.name,
@@ -45,20 +41,21 @@ class UserModelADM extends UserModel {
           id: id,
           name: name,
           email: email,
-          avatar: json['avatar'] as String?,
-          workDays: (json['workDays'] as List<String?>?)?.cast<String>(),
-          workHours: (json['workHours'] as List<int?>?)?.cast<int>(),
+          avatar: json['avatar'],
+          // ignore: avoid_dynamic_calls
+          workDays: json['work_days']?.cast<String>(),
+          // ignore: avoid_dynamic_calls
+          workHours: json['work_hours']?.cast<int>(),
         ),
-      _ => throw FormatException('Invalid UserModelAdm JSON: $json'),
+      _ => throw ArgumentError('Invalid Json'),
     };
   }
+
+  final List<String>? workDays;
+  final List<int>? workHours;
 }
 
-class UserModelEmployee extends UserModel {
-  final int barbershopId;
-  final List<String> workDays;
-  final List<int> workHours;
-
+final class UserModelEmployee extends UserModel {
   UserModelEmployee({
     required super.id,
     required super.name,
@@ -76,19 +73,23 @@ class UserModelEmployee extends UserModel {
         'name': final String name,
         'email': final String email,
         'barbershop_id': final int barbershopId,
-        'work_days': final List<Object?> workDays,
-        'work_hours': final List<Object?> workHours,
+        'work_days': final List workDays,
+        'work_hours': final List workHours,
       } =>
         UserModelEmployee(
           id: id,
           name: name,
           email: email,
-          barbershopId: barbershopId,
-          avatar: json['avatar'] as String?,
           workDays: workDays.cast<String>(),
-          workHours: workHours.cast<int>(), 
+          workHours: workHours.cast<int>(),
+          avatar: json['avatar'],
+          barbershopId: barbershopId,
         ),
-      _ => throw FormatException('Invalid UserModelEmployee JSON: $json'),
+      _ => throw ArgumentError('Invalid UserModelEmployee JSON: $json'),
     };
   }
+
+  final int barbershopId;
+  final List<String> workDays;
+  final List<int> workHours;
 }

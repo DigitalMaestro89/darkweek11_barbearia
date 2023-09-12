@@ -7,11 +7,13 @@ import 'package:dw_barbershop/src/core/ui/constants.dart';
 class ScheduleCalendar extends StatefulWidget {
   final VoidCallback cancelPressed;
   final ValueChanged<DateTime> onPressed;
+  final List<String> workDays;
 
   const ScheduleCalendar({
     Key? key,
     required this.cancelPressed,
     required this.onPressed,
+    required this.workDays,
   }) : super(key: key);
 
   @override
@@ -20,6 +22,24 @@ class ScheduleCalendar extends StatefulWidget {
 
 class _ScheduleCalendarState extends State<ScheduleCalendar> {
   DateTime? selectedDay;
+  late final List<int> weekDaysEnabled;
+
+  int convertWeekDay(String weekDay) => switch (weekDay.toLowerCase()) {
+        'seg' => DateTime.monday,
+        'ter' => DateTime.tuesday,
+        'qua' => DateTime.wednesday,
+        'qui' => DateTime.thursday,
+        'sex' => DateTime.friday,
+        'sab' => DateTime.saturday,
+        'dom' => DateTime.sunday,
+        _ => 0,
+      };
+
+  @override
+  void initState() {
+    super.initState();
+    weekDaysEnabled = widget.workDays.map(convertWeekDay).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +59,9 @@ class _ScheduleCalendarState extends State<ScheduleCalendar> {
               lastDay: DateTime.now().add(const Duration(days: 365 * 10)),
               calendarFormat: CalendarFormat.month,
               locale: 'pt_BR',
-              availableCalendarFormats: const {
-                CalendarFormat.month: 'Mês',
+              availableCalendarFormats: const {CalendarFormat.month: 'Mês'},
+              enabledDayPredicate: (day) {
+                return weekDaysEnabled.contains(day.weekday);
               },
               selectedDayPredicate: (day) {
                 return isSameDay(selectedDay, day);
@@ -71,9 +92,9 @@ class _ScheduleCalendarState extends State<ScheduleCalendar> {
                 ),
               ),
               TextButton(
-                onPressed: (){
-                  if(selectedDay == null) {
-                    Messages.showError('Por favor selecione um dia', context);
+                onPressed: () {
+                  if (selectedDay == null) {
+                    context.showError('Por favor selecione um dia');
                     return;
                   }
                   widget.onPressed(selectedDay!);

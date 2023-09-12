@@ -8,14 +8,14 @@ enum ScheduleStateStatus {
 
 class ScheduleState {
   final ScheduleStateStatus status;
-  final int? scheduleHour;
+  final int? scheduleTime;
   final DateTime? scheduleDate;
 
   ScheduleState.initial() : this(status: ScheduleStateStatus.initial);
 
     ScheduleState({
     required this.status,
-    this.scheduleHour,
+    this.scheduleTime,
     this.scheduleDate
   });
 
@@ -27,7 +27,7 @@ class ScheduleState {
   }) {
     return ScheduleState(
           status: status ?? this.status,
-      scheduleHour: scheduleHour != null ? scheduleHour() : this.scheduleHour,
+      scheduleTime: scheduleHour != null ? scheduleHour() : scheduleTime,
       scheduleDate: scheduleDate != null ? scheduleDate() : this.scheduleDate
     );
   }

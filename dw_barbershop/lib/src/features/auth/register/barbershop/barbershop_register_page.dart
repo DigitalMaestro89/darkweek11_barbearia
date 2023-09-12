@@ -40,7 +40,7 @@ class _BarbershopRegisterPageState
         case BarbershopRegisterStateStatus.initial:
           break;
         case BarbershopRegisterStateStatus.error:
-          Messages.showError('Desculpe ocorreu um erro ao registrar barbearia', context);
+          context.showError('Desculpe ocorreu um erro ao registrar barbearia');
         case BarbershopRegisterStateStatus.success:
           Navigator.of(context).pushNamedAndRemoveUntil('/home/adm', (route) => false);
       }
@@ -100,7 +100,7 @@ class _BarbershopRegisterPageState
                 onPressed: () {
                   switch (formKey.currentState?.validate()) {
                     case null || false:
-                      Messages.showError('Formulário invalido', context);
+                      context.showError('Formulário invalido');
                     case true:
                     barbershopRegisterVM.register(
                         name: nameEC.text,

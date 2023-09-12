@@ -1,4 +1,6 @@
+import 'package:dw_barbershop/src/core/ui/helpers/context_extension.dart';
 import 'package:dw_barbershop/src/core/ui/helpers/messages.dart';
+import 'package:dw_barbershop/src/features/schedule/schedule_state.dart';
 import 'package:dw_barbershop/src/features/schedule/schedule_vm.dart';
 import 'package:dw_barbershop/src/model/user_model.dart';
 import 'package:flutter/material.dart';
@@ -38,8 +40,34 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
 
   @override
   Widget build(BuildContext context) {
-    final userModel = ModalRoute.of(context)!.settings.arguments as UserModel;  
-    final sheduleVM = ref.watch(scheduleVmProvider.notifier);
+    final userModel = ModalRoute.of(context)!.settings.arguments as UserModel;
+    final scheduleVM = ref.watch(scheduleVmProvider.notifier);
+
+    final employeeData = switch (userModel) {
+      UserModelADM(:final workDays, :final workHours) => (
+          workDays: workDays!,
+          workHours: workHours!,
+        ),
+      UserModelEmployee(:final workDays, :final workHours) => (
+          workDays: workDays,
+          workHours: workHours,
+        ),
+    };
+
+    ref.listen(
+      scheduleVmProvider.select((state) => state.status),
+      (_, status) {
+        switch (status) {
+          case ScheduleStateStatus.initial:
+            break;
+          case ScheduleStateStatus.success:
+            context.showSuccess('Cliente agendado com sucesso');
+            context.pop();
+          case ScheduleStateStatus.error:
+            context.showError('Erro ao registrar agendamento');
+        }
+      },
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -113,10 +141,11 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
                           onPressed: (DateTime value) {
                             setState(() {
                               dateEC.text = dateFormat.format(value);
-                              sheduleVM.deteSelecte(value);
+                              scheduleVM.deteSelecte(value);
                               showCalendar = false;
                             });
                           },
+                          workDays: employeeData.workDays,
                         ),
                       ],
                     ),
@@ -127,8 +156,8 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
                   HoursPanel.singleSelection(
                     startTime: 6,
                     endTime: 23,
-                    onHourPressed: sheduleVM.hourSelect,
-                    enabledTimes: const [6, 7, 8],
+                    onHourPressed: scheduleVM.hourSelect,
+                    enabledTimes: employeeData.workHours,
                   ),
                   const SizedBox(
                     height: 24,
@@ -139,14 +168,21 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
                     onPressed: () {
                       switch (formKey.currentState?.validate()) {
                         case (false || null):
-                          Messages.showError('Dados incompletos', context);
+                          context.showError('Dados incompletos');
                         case true:
-                        //   login(emailEC.text, passwordEC.text);
-                          final hourSelected = ref.watch(scheduleVmProvider.select((state) => state.scheduleHour != null));
-                          if(hourSelected) {
-
+                          //   login(emailEC.text, passwordEC.text);
+                          final hourSelected = ref.watch(
+                            scheduleVmProvider
+                                .select((state) => state.scheduleTime != null),
+                          );
+                          if (hourSelected) {
+                             scheduleVM.register(
+                              userModel: userModel,
+                              clientName: clientEC.text,
+                            );
                           } else {
-                            Messages.showError('Por favor selecione um horário de atendimento', context);
+                            context.showError(
+                                'Por favor selecione um horário de atendimento');
                           }
                       }
                     },

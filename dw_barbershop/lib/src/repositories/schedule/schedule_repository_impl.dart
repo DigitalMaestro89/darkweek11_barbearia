@@ -26,13 +26,16 @@ class ScheduleRepositoryImpl implements ScheduleRepository {
         int userId
       }) scheduleData) async {
     try {
-      await _restClient.auth.post('/schedule', data: {
-        'barbershop_id': scheduleData.barbershopId,
-        'user_id': scheduleData.userId,
-        'client_name': scheduleData.clientName,
-        'date': scheduleData.date.toIso8601String(),
-        'time': scheduleData.time,
-      });
+      await _restClient.auth.post(
+        '/schedules',
+        data: {
+          'barbershop_id': scheduleData.barbershopId,
+          'user_id': scheduleData.userId,
+          'client_name': scheduleData.clientName,
+          'date': scheduleData.date.toIso8601String(),
+          'time': scheduleData.time,
+        },
+      );
       return Success(nil);
     } on DioException catch (e, s) {
       log('Erro ao registrar agendamento', error: e, stackTrace: s);

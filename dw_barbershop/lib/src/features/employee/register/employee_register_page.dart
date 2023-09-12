@@ -49,10 +49,10 @@ class _EmployeeRegisterPageState extends ConsumerState<EmployeeRegisterPage> {
         case EmployeeRegisterStateStatus.initial:
           break;
         case EmployeeRegisterStateStatus.success:
-          Messages.showSuccess('Colaborador cadastrado com sucesso', context);
+          context.showSuccess('Colaborador cadastrado com sucesso');
           context.pop();
         case EmployeeRegisterStateStatus.error:
-          Messages.showError('Erro ao registrar colaborador', context);
+          context.showError('Erro ao registrar colaborador');
       }
     });
 
@@ -129,10 +129,11 @@ class _EmployeeRegisterPageState extends ConsumerState<EmployeeRegisterPage> {
                                   validator: registerADM
                                       ? null
                                       : Validatorless.multiple([
-                                    Validatorless.required(
-                                        'E-mail obrigatório'),
-                                    Validatorless.email('E-mail obrigatório')
-                                  ]),
+                                          Validatorless.required(
+                                              'E-mail obrigatório'),
+                                          Validatorless.email(
+                                              'E-mail obrigatório')
+                                        ]),
                                   decoration: const InputDecoration(
                                       label: Text('E-mail')),
                                 ),
@@ -144,10 +145,11 @@ class _EmployeeRegisterPageState extends ConsumerState<EmployeeRegisterPage> {
                                   validator: registerADM
                                       ? null
                                       : Validatorless.multiple([
-                                    Validatorless.required('Senha Obrigatório'),
-                                    Validatorless.min(6,
-                                        'Senha deve ter no minimo 6 caracteres'),
-                                  ]),
+                                          Validatorless.required(
+                                              'Senha Obrigatório'),
+                                          Validatorless.min(6,
+                                              'Senha deve ter no minimo 6 caracteres'),
+                                        ]),
                                   decoration: const InputDecoration(
                                       label: Text('Senha')),
                                 )
@@ -179,8 +181,7 @@ class _EmployeeRegisterPageState extends ConsumerState<EmployeeRegisterPage> {
                             onPressed: () {
                               switch (formKey.currentState?.validate()) {
                                 case null || false:
-                                  Messages.showError(
-                                      'Existem campos inválidos', context);
+                                  context.showError('Existem campos inválidos');
                                 case true:
                                   final EmployeeRegisterState(
                                     workdays: List(isNotEmpty: hasWorkDays),
@@ -188,9 +189,8 @@ class _EmployeeRegisterPageState extends ConsumerState<EmployeeRegisterPage> {
                                   ) = ref.watch(employeeRegisterVmProvider);
 
                                   if (!hasWorkDays || !hasWorkHours) {
-                                    Messages.showError(
-                                        'Por favor selecione os dias das semana e horário de atendimento',
-                                        context);
+                                    context.showError(
+                                        'Por favor selecione os dias das semana e horário de atendimento');
                                     return;
                                   }
 

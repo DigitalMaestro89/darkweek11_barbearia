@@ -40,7 +40,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
       state.whenOrNull(
         error: (error, stackTrace) {
           log('Erro ao Validar', error: error, stackTrace: stackTrace);
-          Messages.showError('Erro ao Validar o login', context);
+          context.showError('Erro ao Validar o login');
           Navigator.of(context)
               .pushNamedAndRemoveUntil('/auth/login', (route) => false);
         },

@@ -36,9 +36,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         case LoginState(status: LoginStateStatus.initial):
           break;
         case LoginState(status: LoginStateStatus.error, :final errorMessage?):
-          Messages.showError(errorMessage, context);
+          context.showError(errorMessage);
         case LoginState(status: LoginStateStatus.error):
-          Messages.showError('Erro ao realizar login', context);
+          context.showError('Erro ao realizar login');
         case LoginState(status: LoginStateStatus.admLogin):
           Navigator.of(context)
               .pushNamedAndRemoveUntil('/home/adm', (route) => false);
@@ -137,8 +137,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             onPressed: () {
                               switch (formKey.currentState?.validate()) {
                                 case (false || null):
-                                  Messages.showError(
-                                      'Campos inválidos', context);
+                                  context.showError('Campos inválidos');
                                 case true:
                                   login(emailEC.text, passwordEC.text);
                               }

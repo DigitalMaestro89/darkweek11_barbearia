@@ -14,14 +14,10 @@ class ScheduleVm extends _$ScheduleVm {
   ScheduleState build() => ScheduleState.initial();
 
   void hourSelect(int hour) {
-    if (hour == state.scheduleHour) {
-      state = state.copyWith(
-        scheduleHour: () => null,
-      );
+    if (hour == state.scheduleTime) {
+      state = state.copyWith(scheduleHour: () => null);
     } else {
-      state = state.copyWith(
-        scheduleHour: () => hour,
-      );
+      state = state.copyWith(scheduleHour: () => hour);
     }
   }
 
@@ -33,25 +29,25 @@ class ScheduleVm extends _$ScheduleVm {
       {required UserModel userModel, required String clientName}) async {
     final asyncLoaderHandler = AsyncLoaderHandler()..start();
 
-    final ScheduleState(:scheduleDate, :scheduleHour) = state;
+    final ScheduleState(:scheduleDate, :scheduleTime) = state;
     final scheduleRepository = ref.read(scheduleRepositoryProvider);
     final BarbershopModel(id: barbershopId) =
         await ref.watch(getMyBarbershopProvider.future);
-    
+
     final dto = (
       barbershopId: barbershopId,
       userId: userModel.id,
       clientName: clientName,
       date: scheduleDate!,
-      time: scheduleHour!,
+      time: scheduleTime!,
     );
 
     final scheduleResult = await scheduleRepository.sheduleClient(dto);
 
-    switch(scheduleResult) {
+    switch (scheduleResult) {
       case Success():
         state = state.copyWith(status: ScheduleStateStatus.success);
-      case Failure():      
+      case Failure():
         state = state.copyWith(status: ScheduleStateStatus.error);
     }
 

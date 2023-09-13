@@ -1,7 +1,6 @@
 class BarbershopModel {
   final int id;
-  final String name;
-  final String email;
+  final String name, email;
   final List<String> openingDays;
   final List<int> openingHours;
 

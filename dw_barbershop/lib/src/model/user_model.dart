@@ -1,7 +1,6 @@
 sealed class UserModel {
   final int id;
-  final String name;
-  final String email;
+  final String name, email;
   final String? avatar;
 
   UserModel({

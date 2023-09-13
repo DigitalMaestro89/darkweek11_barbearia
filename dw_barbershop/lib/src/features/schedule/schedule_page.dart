@@ -81,7 +81,7 @@ class _SchedulePageState extends ConsumerState<SchedulePage> {
             child: Center(
               child: Column(
                 children: [
-                  const AvatarWidget(hideUploadUploadButton: true),
+                  const AvatarWidget.withoutButton(),
                   const SizedBox(
                     height: 24,
                   ),

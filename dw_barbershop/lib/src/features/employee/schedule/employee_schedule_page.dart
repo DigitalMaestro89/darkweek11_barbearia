@@ -70,40 +70,40 @@ class _EmployeeSchedulePageState extends ConsumerState<EmployeeSchedulePage> {
                       showDatePickerButton: true,
                       showTodayButton: true,
                       dataSource:
-                          AppointmentDataSource(), //schedules: schedules),
-                      appointmentBuilder:
-                          (context, calendarAppointmentDetails) {
-                        return Container(
-                          decoration: BoxDecoration(
-                            color: ColorConstants.colorBrown,
-                            shape: BoxShape.rectangle,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Center(
-                            child: Text(
-                              calendarAppointmentDetails
-                                  .appointments.first.subject,
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
+                          AppointmentDataSource(schedules: schedules), //schedules: schedules),
+                      // appointmentBuilder:
+                      //     (context, calendarAppointmentDetails) {
+                      //   return Container(
+                      //     decoration: BoxDecoration(
+                      //       color: ColorConstants.colorBrown,
+                      //       shape: BoxShape.rectangle,
+                      //       borderRadius: BorderRadius.circular(5),
+                      //     ),
+                      //     child: Center(
+                      //       child: Text(
+                      //         calendarAppointmentDetails
+                      //             .appointments.first.subject,
+                      //         style: const TextStyle(
+                      //           color: Colors.white,
+                      //           fontSize: 12,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //   );
+                      // },
+                      onViewChanged: (viewChangedDetails) {
+                        if (ignoreFirstLoad) {
+                          ignoreFirstLoad = false;
+                          return;
+                        }
+                        final employeeSchedule = ref.read(
+                          employeeScheduleVMProvider(userId, dateSelected).notifier,
                         );
+                        employeeSchedule.changeDate(
+                          userId,
+                          viewChangedDetails.visibleDates.first,
+                       );
                       },
-                      //;onViewChanged: (viewChangedDetails) {
-                      //  if (ignoreFirstLoad) {
-                      //    ignoreFirstLoad = false;
-                      //    return;
-                      //  }
-                      //  final employeeSchedule = ref.read(
-                      //    employeeScheduleVMProvider(userId, dateSelected).notifier,
-                      //  );
-                      //  employeeSchedule.changeDate(
-                      //    userId,
-                      //    viewChangedDetails.visibleDates.first,
-                      // );
-                      //},
                       onTap: (calendarTapDetails) {
                         if (calendarTapDetails.appointments?.isNotEmpty ??
                             false) {

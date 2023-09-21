@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 enum LoginStateStatus {
   initial,
@@ -17,6 +18,8 @@ class LoginState {
     required this.status,
     this.errorMessage,
   });
+
+ 
 
   LoginState copyWith({
     LoginStateStatus? status,

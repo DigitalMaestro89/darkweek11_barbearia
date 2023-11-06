@@ -86,3 +86,69 @@ Além disso, foi muito legal aprender mais sobre os poderes e usos do Dart 3 na 
 Vários outros aprendizados foram adquiridos e também reforçados; além de refatorações e melhorias de código feitas ao longo do caminho. Sempre há algo a ser melhorado e aprendido. 🚀
 </p>
 
+<h2>🤔 Como usar</h2>
+
+   ```
+   É necessário ter o Flutter instalado. Para configurar o ambiente de desenvolvimento na sua máquina:
+   https://flutter.dev/docs/get-started/install
+
+   O aplicativo consome os dados do backend desenvolvido pela comunidade ADF chamado json_rest_server:
+   https://pub.dev/packages/json_rest_server
+
+   - Clone o repositório:
+   $ git clone https://github.com/caneto/dw10_delivery_web dw10_vakinhar_burger_bloc
+
+   - Entre no diretório:
+   $ cd dw10_delivery_web\delivery_beckoffice
+
+   - Instale as dependências:
+   $ flutter pub get
+
+   - Instale o json_rest_server
+   $ dart pub global activate json_rest_server
+
+   - Abra a pasta em CMD, o backend
+   $ cd dw10_delivery_web\delivery_api
+
+   - Para inicializá-lo, execute o comando:
+   $ jrs run
+
+   - Em outro terminal, no diretório raiz do projeto, execute:
+   $ flutter run
+   ```
+
+---
+
+<h2>💪 Como contribuir</h2>
+
+   ```
+   - Gosto bastante de seguir a seguinte Style Guide de Commits 😊:
+   https://udacity.github.io/git-styleguide/
+
+   - Dê um fork no projeto 
+
+   - Cria uma nova branch com suas mudanças:
+   $ git checkout -b my-feature
+
+   - Salve suas mudanças e faça uma mensagem de commit message sobre suas alterações:
+   $ git commit -m "feat: My new feature"
+
+   - Envie suas mudanças:
+   $ git push origin my-feature
+   ```
+
+---
+
+<h2>📝 Licença</h2>
+
+<p>
+   Esse repositório está sobre a Licença GNU General Public License v3.0, e você pode vê-la no arquivo <a href="https://github.com/caneto/darkweek9_vakinha_burger/blob/main/LICENSE">LICENSE</a> para mais detalhes. 😉
+</p>
+
+
+---
+
+   >Esse projeto foi desenvolvido com ❤️ por **[@Carlos Alberto Pinto](https://www.linkedin.com/in/canetorj/)**, com o instrutor **[@Rodrigo Rahman](https://br.linkedin.com/in/rodrigo-rahman)**, no evento #DartWeek da **[Academia do Flutter]**.<br>
+   Se isso te ajudou, dê uma ⭐, e contribua, isso irá me ajudar também 😉
+
+

@@ -96,10 +96,10 @@ Vários outros aprendizados foram adquiridos e também reforçados; além de ref
    https://pub.dev/packages/json_rest_server
 
    - Clone o repositório:
-   $ git clone https://github.com/caneto/dw10_delivery_web dw10_vakinhar_burger_bloc
+    $ git clone https://github.com/caneto/dartweek11_barbearia
 
    - Entre no diretório:
-   $ cd dw10_delivery_web\delivery_beckoffice
+   $ cd dartweek11_barbearia\dw_barbershop
 
    - Instale as dependências:
    $ flutter pub get
@@ -108,7 +108,7 @@ Vários outros aprendizados foram adquiridos e também reforçados; além de ref
    $ dart pub global activate json_rest_server
 
    - Abra a pasta em CMD, o backend
-   $ cd dw10_delivery_web\delivery_api
+   $ cd dartweek11_barbearia\dw_barbershop_api
 
    - Para inicializá-lo, execute o comando:
    $ jrs run

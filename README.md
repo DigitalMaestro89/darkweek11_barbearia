@@ -1,8 +1,8 @@
 <p align="center">
-    <ximg src="https://github.com/caneto/darkweek9_vakinha_burger/blob/main/delivery_app/assets/images/logo.png" width="150" alt="Logo App Vakinha Burger"/>
+    <img src="https://github.com/caneto/darkweek11_barbearia/blob/main/dw_barbershop/assets/images/imgLogo.png" width="150" alt="Logo App Barbearia"/>
 </p>
 
-<h1 align="center">Barbearia</h1>
+<h1 align="center">Barbearia App</h1>
 
 ---
 

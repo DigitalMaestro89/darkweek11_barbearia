@@ -1,6 +1,6 @@
 // ignore_for_file: unused_local_variable
 
-import 'package:asyncstate/class/async_loader_handler.dart';
+import 'package:asyncstate/asyncstate.dart';
 import 'package:dw_barbershop/src/core/excptions/repository_execption.dart';
 import 'package:dw_barbershop/src/core/fp/either.dart';
 import 'package:dw_barbershop/src/core/fp/nil.dart';

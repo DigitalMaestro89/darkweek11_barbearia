@@ -40,10 +40,11 @@
 ---   
 
 <h2>🛠️ Funcionalidades e Tecnologias Estudadas</h2>
+
 - Usando o Dart 3:
-  - Programação Funcional (Either) com Pure Dart (usando o poder do Dart 3)
-  - Usando muitos métodos `switch`;
-  - Usando `pattern matching` etc.
+    - Programação Funcional (Either) com Pure Dart (usando o poder do Dart 3)
+    - Usando muitos métodos `switch`;
+    - Usando `pattern matching` etc.
 - Consulta da API usando o package Dio
 - RiverPod como Gerenciamento de Estado e muito mais (grande novidade deste DW11)
 - Fluxo de Login e Logout com a aplicação

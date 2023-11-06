@@ -53,19 +53,22 @@
   - Login (onde possui o fluxo de login)
   - Register (onde possui o fluxo de cadastro)
    Principais packages utilizados.
-    - flutter_riverpod - 2.3.7
-    - riverpod_annotation - 2.1.2
-    - custom_lint - 0.5.2
-    - riverpod_lint - 2.0.1
-    - riverpod_generator - 2.2.0
-    - dio - 5.3.2
-    - pretty_dio_logger - 1.3.1
-    - asyncstate - 2.0.2 (Nacional)
-    - syncfusion_flutter_calender - 22.2.11
-    - top_snackbar_flutter - 3.1.0
-    - intl - 0.18.1
-    - validationles - 1.2.1
-    - table_calendar - 3.0.9
+    - [flutter_riverpod] - 2.4.5 https://pub.dev/packages/flutter_riverpod
+    - [riverpod_annotation] - 2.3.0 (https://pub.dev/packages/riverpod_annotation)
+    - [custom_lint] - 0.5.6 (https://pub.dev/packages/custom_lint)
+    - [riverpod_lint] - 2.3.3 (https://pub.dev/packages/riverpod_lint)
+    - [riverpod_generator] - 2.4.6 (https://pub.dev/packages/riverpod_generator)
+    - [dio] - 5.3.3 (https://pub.dev/packages/dio)
+    - [pretty_dio_logger] - 1.3.1 (https://pub.dev/packages/pretty_dio_logger)
+    - [asyncstate] - 2.1.0 (Nacional) (https://pub.dev/packages/asyncstate)
+    - [syncfusion_flutter_calender] - 22.2.11 (https://pub.dev/packages/syncfusion_flutter_calendar)
+    - [top_snackbar_flutter] - 3.1.0 (https://pub.dev/packages/top_snackbar_flutter)
+    - [shared_preferences] - 2.2.2 (https://pub.dev/packages/shared_preferences)
+    - [loading_animation_widget] - 1.2.0+4 (https://pub.dev/packages/loading_animation_widget)
+    - [intl] - 0.18.1 (https://pub.dev/packages/intl)
+    - [validationles] - 1.2.1 (https://pub.dev/packages/validatorless)
+    - [table_calendar] - 3.0.9 (https://pub.dev/packages/table_calendar)
+    - [flutter_lints] - 3.0.1 (https://pub.dev/packages/flutter_lints)
          
     entre outros
 </p>

@@ -36,6 +36,7 @@
 
 <h2>📦 Assets</h2>
 
+- Coleção do PostMan 
 - UI Design criado para o evento: <a href="https://www.figma.com/file/FTkFmMrmIMUipkJ8FrcWfb/DW-Barbeshop?type=design&node-id=0-1&mode=design&t=lq1OHCPQ3DDpp4Zx-0">**Barbearia**</a>
 ---   
 

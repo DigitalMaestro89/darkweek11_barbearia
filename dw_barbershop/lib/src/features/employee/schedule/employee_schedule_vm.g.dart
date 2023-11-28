@@ -35,7 +35,7 @@ abstract class _$EmployeeScheduleVM
   late final int userId;
   late final DateTime date;
 
-  Future<List<ScheduleModel>> build(
+  FutureOr<List<ScheduleModel>> build(
     int userId,
     DateTime date,
   );
@@ -91,9 +91,9 @@ class EmployeeScheduleVMProvider extends AutoDisposeAsyncNotifierProviderImpl<
     EmployeeScheduleVM, List<ScheduleModel>> {
   /// See also [EmployeeScheduleVM].
   EmployeeScheduleVMProvider(
-    this.userId,
-    this.date,
-  ) : super.internal(
+    int userId,
+    DateTime date,
+  ) : this._internal(
           () => EmployeeScheduleVM()
             ..userId = userId
             ..date = date,
@@ -106,10 +106,58 @@ class EmployeeScheduleVMProvider extends AutoDisposeAsyncNotifierProviderImpl<
           dependencies: EmployeeScheduleVMFamily._dependencies,
           allTransitiveDependencies:
               EmployeeScheduleVMFamily._allTransitiveDependencies,
+          userId: userId,
+          date: date,
         );
+
+  EmployeeScheduleVMProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.userId,
+    required this.date,
+  }) : super.internal();
 
   final int userId;
   final DateTime date;
+
+  @override
+  FutureOr<List<ScheduleModel>> runNotifierBuild(
+    covariant EmployeeScheduleVM notifier,
+  ) {
+    return notifier.build(
+      userId,
+      date,
+    );
+  }
+
+  @override
+  Override overrideWith(EmployeeScheduleVM Function() create) {
+    return ProviderOverride(
+      origin: this,
+      override: EmployeeScheduleVMProvider._internal(
+        () => create()
+          ..userId = userId
+          ..date = date,
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        userId: userId,
+        date: date,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeAsyncNotifierProviderElement<EmployeeScheduleVM,
+      List<ScheduleModel>> createElement() {
+    return _EmployeeScheduleVMProviderElement(this);
+  }
 
   @override
   bool operator ==(Object other) {
@@ -126,16 +174,26 @@ class EmployeeScheduleVMProvider extends AutoDisposeAsyncNotifierProviderImpl<
 
     return _SystemHash.finish(hash);
   }
+}
+
+mixin EmployeeScheduleVMRef
+    on AutoDisposeAsyncNotifierProviderRef<List<ScheduleModel>> {
+  /// The parameter `userId` of this provider.
+  int get userId;
+
+  /// The parameter `date` of this provider.
+  DateTime get date;
+}
+
+class _EmployeeScheduleVMProviderElement
+    extends AutoDisposeAsyncNotifierProviderElement<EmployeeScheduleVM,
+        List<ScheduleModel>> with EmployeeScheduleVMRef {
+  _EmployeeScheduleVMProviderElement(super.provider);
 
   @override
-  Future<List<ScheduleModel>> runNotifierBuild(
-    covariant EmployeeScheduleVM notifier,
-  ) {
-    return notifier.build(
-      userId,
-      date,
-    );
-  }
+  int get userId => (origin as EmployeeScheduleVMProvider).userId;
+  @override
+  DateTime get date => (origin as EmployeeScheduleVMProvider).date;
 }
 // ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member
+// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

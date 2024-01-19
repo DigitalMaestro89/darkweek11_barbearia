@@ -5,7 +5,6 @@ import 'package:dw_barbershop/src/model/user_model.dart';
 import 'package:flutter/material.dart';
 
 class HomeEmployeeTile extends StatelessWidget {
-
   final UserModel employee;
 
   const HomeEmployeeTile({
@@ -30,12 +29,13 @@ class HomeEmployeeTile extends StatelessWidget {
             width: 56,
             height: 56,
             decoration: BoxDecoration(
-                image: DecorationImage(
-              image: switch (employee.avatar) {
-                final avatar? => NetworkImage(avatar),
-                _ => const AssetImage(ImageConstants.avatar),
-              } as ImageProvider,
-            )),
+              image: DecorationImage(
+                image: switch (employee.avatar) {
+                  final avatar? => NetworkImage(avatar),
+                  _ => const AssetImage(ImageConstants.avatar),
+                } as ImageProvider,
+              ),
+            ),
           ),
           const SizedBox(
             width: 10,
@@ -67,7 +67,8 @@ class HomeEmployeeTile extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(horizontal: 12)),
                       onPressed: () {
-                        context.pushNamed('/employee/schedule', arguments: employee);
+                        context.pushNamed('/employee/schedule',
+                            arguments: employee);
                       },
                       child: const Text('VER AGENDA'),
                     ),

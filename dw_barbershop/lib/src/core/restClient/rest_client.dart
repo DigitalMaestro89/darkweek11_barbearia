@@ -6,7 +6,8 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 final class RestClient extends DioForNative {
   RestClient()
       : super(BaseOptions(
-          baseUrl: 'http://192.168.1.88:8080',
+          //baseUrl: 'http://192.168.1.88:8080',
+          baseUrl: 'http://192.168.1.96:8080',
           //baseUrl: 'http://2804:d41:c624:2500:5c41:d59e:79f4:1496:8080',
           //baseUrl: 'http://localhost:8080',
           connectTimeout: const Duration(seconds: 10),

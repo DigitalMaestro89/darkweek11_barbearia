@@ -8,7 +8,7 @@ extension MediaQueryExt on BuildContext {
   Brightness get platformBrightness => MediaQuery.of(this).platformBrightness;
   Orientation get orientation => MediaQuery.of(this).orientation;
   double get devicePixelRatio => MediaQuery.of(this).devicePixelRatio;
-  double get textScaleFactor => MediaQuery.of(this).textScaleFactor;
+  TextScaler get textScaleFactor => MediaQuery.of(this).textScaler;
   double get mediaQueryShortestSide => mediaQuerySize.shortestSide;
   double get mediaQueryLongestSide => mediaQuerySize.longestSide;
   double get height => MediaQuery.of(this).size.height;

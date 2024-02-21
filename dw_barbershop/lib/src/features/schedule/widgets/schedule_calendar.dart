@@ -10,11 +10,11 @@ class ScheduleCalendar extends StatefulWidget {
   final List<String> workDays;
 
   const ScheduleCalendar({
-    Key? key,
+    super.key,
     required this.cancelPressed,
     required this.onPressed,
     required this.workDays,
-  }) : super(key: key);
+  });
 
   @override
   State<ScheduleCalendar> createState() => _ScheduleCalendarState();

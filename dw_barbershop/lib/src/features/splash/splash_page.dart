@@ -32,7 +32,7 @@ class _SplashPageState extends ConsumerState<SplashPage> {
     super.initState();
   }
 
-  void _redirect(String routeName) {}
+  //void _redirect(String routeName) {}
 
   @override
   Widget build(BuildContext context) {

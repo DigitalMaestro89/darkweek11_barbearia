@@ -37,7 +37,7 @@
 <h2>📦 Assets</h2>
 
 - <a href="https://github.com/caneto/darkweek11_barbearia/blob/main/dw_postman/DW11.postman_collection.json">Coleção do PostMan</a>
-- UI Design criado para o evento: <a href="https://www.figma.com/file/FTkFmMrmIMUipkJ8FrcWfb/DW-Barbeshop?type=design&node-id=0-1&mode=design&t=lq1OHCPQ3DDpp4Zx-0">**Barbearia**</a>
+- UI Design criado para o evento: <a href="https://github.com/caneto/darkweek11_barbearia/blob/main/DWBarbeshop.fig">**Barbearia**</a>
 ---   
 
 <h2>🛠️ Funcionalidades e Tecnologias Estudadas</h2>
